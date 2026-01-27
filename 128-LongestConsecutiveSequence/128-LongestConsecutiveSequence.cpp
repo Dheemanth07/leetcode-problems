@@ -1,4 +1,4 @@
-// Last updated: 1/27/2026, 10:21:51 PM
+// Last updated: 1/27/2026, 10:22:17 PM
 1class Solution {
 2public:
 3    int longestConsecutive(vector<int>& nums) {
