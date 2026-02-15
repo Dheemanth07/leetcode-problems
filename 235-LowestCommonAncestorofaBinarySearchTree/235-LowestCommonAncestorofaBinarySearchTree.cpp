@@ -1,4 +1,4 @@
-// Last updated: 1/15/2026, 1:03:45 PM
+// Last updated: 2/15/2026, 5:26:45 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -12,14 +12,12 @@
 11class Solution {
 12public:
 13    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-14        while(root){
-15            if(p->val<root->val && q->val<root->val)
-16                root=root->left;
-17            else if(p->val>root->val && q->val>root->val)
-18                root=root->right;
-19           else
-20                return root;
-21        }
-22        return nullptr;
-23    }
-24};
+14        if (!root)
+15            return 0;
+16        if (p->val < root->val && q->val < root->val)
+17            return lowestCommonAncestor(root->left, p, q);
+18        if (p->val > root->val && q->val > root->val)
+19            return lowestCommonAncestor(root->right, p, q);
+20        return root;
+21    }
+22};
