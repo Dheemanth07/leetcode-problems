@@ -1,4 +1,4 @@
-// Last updated: 2/27/2026, 8:23:11 PM
+// Last updated: 2/27/2026, 8:23:20 PM
 1class Solution {
 2public:
 3    void dfs(int city, vector<vector<int>>& isConnected,
