@@ -1,41 +1,61 @@
-// Last updated: 4/4/2026, 12:30:39 PM
+// Last updated: 4/4/2026, 12:31:56 PM
 1class Solution {
 2public:
-3    bool validPalindrome(string s) {
-4        // Lambda function to check if substring from left to right is a
-5        // palindrome
-6        auto isPalindrome = [&](int left, int right) {
-7            // Use two pointers to check characters from both ends
-8            while (left < right) {
-9                if (s[left] != s[right]) {
-10                    return false;
-11                }
-12                left++;
-13                right--;
-14            }
-15            return true;
-16        };
-17
-18        // Initialize two pointers at the beginning and end of string
-19        int left = 0;
-20        int right = s.size() - 1;
-21
-22        // Check characters from both ends moving towards center
-23        while (left < right) {
-24            // If characters don't match, we have one chance to delete
-25            if (s[left] != s[right]) {
-26                // Try deleting either the left character or the right character
-27                // Check if remaining substring is palindrome after deletion
-28                return isPalindrome(left + 1, right) ||
-29                       isPalindrome(left, right - 1);
-30            }
-31            // Move pointers towards center
-32            left++;
-33            right--;
-34        }
-35
-36        // String is already a palindrome without any deletion
-37        return true;
-38    }
-39};
-40
+3    bool checkpalindrome(int i, int j, string& s) {
+4        // i = 0;
+5        // j = s.size() - 1;
+6
+7        while (i <= j) {
+8            if (s[i] != s[j]) {
+9                return false;
+10            }
+11            i++;
+12            j--;
+13        }
+14        return true;
+15    }
+16    bool validPalindrome(string s) {
+17        int i = 0;
+18        int j = s.size() - 1;
+19        while (i <= j) {
+20            if (s[i] == s[j]) {
+21                i++;
+22                j--;
+23            } else {
+24                return checkpalindrome(i + 1, j, s) ||
+25                       checkpalindrome(i, j - 1, s);
+26            }
+27        }
+28        return true;
+29    }
+30};
+31// class Solution {
+32// public:
+33//     bool checkpalindrom(int i, int j, string &s) {
+34//         while (i <= j) {
+35//             if (s[i] != s[j]) {
+36//                 return false;
+37//             }
+38//             i++;
+39//             j--;
+40//         }
+41//         return true;
+42//     }
+43
+44//     bool validPalindrome(string s) {
+45//         int i = 0;
+46//         int j = s.size() - 1;
+47
+48//         while (i <= j) {
+49//             if (s[i] == s[j]) {
+50//                 i++;
+51//                 j--;
+52//             }
+53//             else {
+54//                 return checkpalindrom(i + 1, j, s) ||
+55//                        checkpalindrom(i, j - 1, s);
+56//             }
+57//         }
+58//         return true;
+59//     }
+60// };
