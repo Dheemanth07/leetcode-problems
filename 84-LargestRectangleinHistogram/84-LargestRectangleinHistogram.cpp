@@ -1,4 +1,4 @@
-// Last updated: 2/5/2026, 7:58:00 PM
+// Last updated: 4/5/2026, 8:25:52 AM
 1class Solution {
 2public:
 3    int largestRectangleArea(vector<int>& heights) {
