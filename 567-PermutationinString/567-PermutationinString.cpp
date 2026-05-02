@@ -1,4 +1,4 @@
-// Last updated: 2/2/2026, 7:15:50 PM
+// Last updated: 5/2/2026, 4:26:38 PM
 1class Solution {
 2public:
 3    bool checkInclusion(string s1, string s2) {
@@ -12,12 +12,16 @@
 11        }
 12        if (freq1 == freq2)
 13            return true;
-14        for (int i = n1; i < n2; i++) {
-15            freq2[s2[i] - 'a']++;
-16            freq2[s2[i - n1] - 'a']--;
-17            if (freq1 == freq2)
-18                return true;
-19        }
-20        return false;
-21    }
-22};
+14
+15        int left = 0;
+16        for (int right = n1; right < n2; right++) {
+17            freq2[s2[right] - 'a']++;
+18            freq2[s2[left] - 'a']--;
+19            left++;
+20
+21            if (freq1 == freq2)
+22                return true;
+23        }
+24        return false;
+25    }
+26};
