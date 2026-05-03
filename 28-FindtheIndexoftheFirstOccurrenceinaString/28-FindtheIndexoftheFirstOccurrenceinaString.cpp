@@ -1,9 +1,9 @@
-// Last updated: 5/3/2026, 11:34:07 AM
+// Last updated: 5/3/2026, 12:08:59 PM
 1#include <string>
 2
 3class Solution {
 4public:
-5    int strStr(std::string haystack, std::string needle) {
+5    int strStr(string haystack, string needle) {
 6        int n = haystack.length();
 7        int m = needle.length();
 8
