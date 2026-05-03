@@ -1,4 +1,4 @@
-// Last updated: 5/3/2026, 3:46:10 PM
+// Last updated: 5/3/2026, 3:46:19 PM
 1class Solution {
 2public:
 3    bool repeatedSubstringPattern(string s) {
