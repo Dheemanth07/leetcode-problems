@@ -1,4 +1,4 @@
-// Last updated: 5/7/2026, 12:42:03 PM
+// Last updated: 5/7/2026, 12:43:35 PM
 1/*
 2// Definition for a Node.
 3class Node {
@@ -18,42 +18,53 @@
 17class Solution {
 18public:
 19    Node* copyRandomList(Node* head) {
-20        if (!head)
-21            return NULL;
-22
-23        Node* curr = head;
+20        // Base case: If the original list is completely empty,
+21        // there is nothing to copy.
+22        if (!head)
+23            return nullptr;
 24
-25        // Step 1: Insert copy nodes
-26        while (curr) {
-27            Node* newNode = new Node(curr->val);
-28            newNode->next = curr->next;
-29            curr->next = newNode;
-30            curr = newNode->next;
-31        }
-32
-33        // Step 2: Assign random pointers
-34        curr = head;
-35        while (curr) {
-36            if (curr->random) {
-37                curr->next->random = curr->random->next;
-38            }
-39            curr = curr->next->next;
-40        }
-41
-42        // Step 3: Separate the lists
-43        curr = head;
-44        Node* newHead = head->next;
-45        Node* copy = newHead;
-46
-47        while (curr) {
-48            curr->next = curr->next->next;
-49            if (copy->next) {
-50                copy->next = copy->next->next;
-51            }
-52            curr = curr->next;
-53            copy = copy->next;
-54        }
-55
-56        return newHead;
-57    }
-58};
+25        // The Hash Map acts as our "Ledger".
+26        // Key: Memory address of the Original Node
+27        // Value: Memory address of the corresponding Clone Node
+28        unordered_map<Node*, Node*> mp;
+29
+30        Node* cur = head;
+31
+32        // --- PASS 1: Build the Boxes (Clones) ---
+33        // Walk down the original list and create a brand new node for every
+34        // existing node. We only copy the value right now; pointers remain
+35        // NULL.
+36        while (cur) {
+37            mp[cur] = new Node(cur->val);
+38            cur = cur->next;
+39        }
+40
+41        // Reset our traversal pointer back to the start of the original list
+42        // so we can walk through it a second time.
+43        cur = head;
+44
+45        // --- PASS 2: Wire up the Pointers ---
+46        // Now that every clone exists in memory, we can safely set their
+47        // pointers without worrying about pointing to something that hasn't
+48        // been built yet.
+49        while (cur) {
+50            // mp[cur] gives us the Clone of the current node.
+51
+52            // Look at where the Original node's 'next' points, find THAT clone
+53            // in the ledger, and wire it up.
+54            // (If cur->next is NULL, the map safely returns nullptr).
+55            mp[cur]->next = mp[cur->next];
+56
+57            // Look at where the Original node's 'random' points, find THAT
+58            // clone in the ledger, and wire it up.
+59            mp[cur]->random = mp[cur->random];
+60
+61            // Move to the next node in the original list
+62            cur = cur->next;
+63        }
+64
+65        // Return the clone of the original head node, which is the
+66        // starting point of our fully wired, deeply copied new list.
+67        return mp[head];
+68    }
+69};
