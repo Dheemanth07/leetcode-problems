@@ -1,4 +1,4 @@
-// Last updated: 5/9/2026, 11:33:41 AM
+// Last updated: 5/9/2026, 11:34:14 AM
 1/*
 2// Definition for a Node.
 3class Node {
@@ -37,13 +37,12 @@
 36
 37            // THE TRICK: Push children from RIGHT to LEFT
 38            // This ensures the Leftmost child ends up on top of the stack!
-39            for (int i = curr->children.size() - 1; i >= 0; i--) {
-40                if (curr->children[i] != nullptr) {
+39            for (int i = curr->children.size() - 1; i >= 0; i--)
+40                if (curr->children[i] != nullptr)
 41                    st.push(curr->children[i]);
-42                }
-43            }
-44        }
-45
-46        return result;
-47    }
-48};
+42                
+43        }
+44
+45        return result;
+46    }
+47};
