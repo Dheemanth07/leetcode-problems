@@ -1,4 +1,4 @@
-// Last updated: 2/17/2026, 7:20:12 PM
+// Last updated: 5/9/2026, 12:19:17 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -14,24 +14,30 @@
 13class Solution {
 14public:
 15    vector<int> rightSideView(TreeNode* root) {
-16        vector<int> res;
-17        if (!root)
-18            return res;
-19        queue<TreeNode*> q;
-20        q.push(root);
-21        while (!q.empty()) {
-22            int level = q.size();
-23            for (int i = 0; i < level; i++) {
-24                TreeNode* node = q.front();
-25                q.pop();
-26                if (i == level - 1)
-27                    res.push_back(node->val);
-28                if (node->left)
-29                    q.push(node->left);
-30                if (node->right)
-31                    q.push(node->right);
-32            }
-33        }
-34        return res;
-35    }
-36};
+16        if (!root)
+17            return {};
+18
+19        vector<int> res;
+20
+21        queue<TreeNode*> q;
+22        q.push(root);
+23
+24        while (!q.empty()) {
+25            int level = q.size();
+26
+27            for (int i = 0; i < level; i++) {
+28                TreeNode* node = q.front();
+29                q.pop();
+30
+31                if (i == level - 1)
+32                    res.push_back(node->val);
+33                if (node->left)
+34                    q.push(node->left);
+35                if (node->right)
+36                    q.push(node->right);
+37            }
+38        }
+39
+40        return res;
+41    }
+42};
