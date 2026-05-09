@@ -1,4 +1,4 @@
-// Last updated: 5/9/2026, 11:10:58 AM
+// Last updated: 5/9/2026, 11:23:53 AM
 1/*
 2// Definition for a Node.
 3class Node {
@@ -20,28 +20,34 @@
 19*/
 20
 21class Solution {
-22private:
-23    // Our recursive helper function
-24    void traverse(Node* root, vector<int>& result) {
-25        // 1. Base Case: If the node doesn't exist, stop.
-26        if (root == nullptr) {
-27            return;
-28        }
-29
-30        // 2. The Leap of Faith: Tell ALL children to process themselves FIRST
-31        for (Node* child : root->children) {
-32            traverse(child, result);
-33        }
+22public:
+23    vector<int> postorder(Node* root) {
+24        if (root == nullptr)
+25            return {};
+26
+27        vector<int> result;
+28        stack<Node*> st;
+29        st.push(root);
+30
+31        while (!st.empty()) {
+32            Node* curr = st.top();
+33            st.pop();
 34
-35        // 3. The Work: Now that the loop is over, all my children are done.
-36        // It is finally my turn to be added to the list!
-37        result.push_back(root->val);
-38    }
-39
-40public:
-41    vector<int> postorder(Node* root) {
-42        vector<int> result;
-43        traverse(root, result); // Kick off the recursion
-44        return result;
-45    }
-46};
+35            // "Process" the root immediately (Pre-order style)
+36            result.push_back(curr->val);
+37
+38            // Push children to the stack from Left to Right.
+39            // Because it's a stack (LIFO), they will be popped Right to Left!
+40            for (Node* child : curr->children)
+41                if (child)
+42                    st.push(child);
+43        }
+44
+45        // Right now our array is: Root -> Rightmost -> ... -> Leftmost
+46        // Reverse it to get true Postorder: Leftmost -> ... -> Rightmost ->
+47        // Root!
+48        reverse(result.begin(), result.end());
+49
+50        return result;
+51    }
+52};
