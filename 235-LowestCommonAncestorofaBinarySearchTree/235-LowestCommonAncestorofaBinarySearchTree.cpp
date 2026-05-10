@@ -1,23 +1,27 @@
-// Last updated: 2/15/2026, 5:34:36 PM
-1/**
-2 * Definition for a binary tree node.
-3 * struct TreeNode {
-4 *     int val;
-5 *     TreeNode *left;
-6 *     TreeNode *right;
-7 *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-8 * };
-9 */
-10
-11class Solution {
-12public:
-13    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-14        if (!root)
-15            return 0;
-16        if (p->val < root->val && q->val < root->val)
-17            return lowestCommonAncestor(root->left, p, q);
-18        if (p->val > root->val && q->val > root->val)
-19            return lowestCommonAncestor(root->right, p, q);
-20        return root;
-21    }
-22};
+// Last updated: 5/10/2026, 4:26:45 PM
+1class Solution {
+2public:
+3    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+4        TreeNode* curr = root;
+5
+6        while (curr) {
+7            // 1. Both friends want to go Left
+8            if (p->val < curr->val && q->val < curr->val) {
+9                curr = curr->left;
+10            }
+11            // 2. Both friends want to go Right
+12            else if (p->val > curr->val && q->val > curr->val) {
+13                curr = curr->right;
+14            }
+15            // 3. The Fork in the Road!
+16            // One is less, one is greater (or one is exactly equal to curr).
+17            // We found the LCA!
+18            else {
+19                return curr;
+20            }
+21        }
+22
+23        return nullptr; // Safety net, though the problem guarantees an LCA
+24                        // exists
+25    }
+26};
