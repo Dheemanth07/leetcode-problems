@@ -1,4 +1,4 @@
-// Last updated: 2/20/2026, 9:03:50 PM
+// Last updated: 5/10/2026, 4:40:50 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -15,18 +15,18 @@
 14class Solution {
 15    int maxSum = INT_MIN;
 16
-17    int dfs(TreeNode* root) {
+17    int calculateMaxPath(TreeNode* root) {
 18        if (!root)
 19            return 0;
-20        int left = max(0, dfs(root->left));
-21        int right = max(0, dfs(root->right));
+20        int left = max(0, calculateMaxPath(root->left));
+21        int right = max(0, calculateMaxPath(root->right));
 22        maxSum = max(maxSum, root->val + left + right);
 23        return root->val + max(left, right);
 24    }
 25
 26public:
 27    int maxPathSum(TreeNode* root) {
-28        dfs(root);
+28        calculateMaxPath(root);
 29        return maxSum;
 30    }
 31};
