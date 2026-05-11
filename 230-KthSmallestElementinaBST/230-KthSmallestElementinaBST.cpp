@@ -1,4 +1,4 @@
-// Last updated: 2/18/2026, 8:51:02 PM
+// Last updated: 5/11/2026, 11:18:57 AM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -18,7 +18,7 @@
 17    int ans = 0;
 18
 19    void inorder(TreeNode* root, int k) {
-20        if (!root)
+20        if (!root || count >= k)
 21            return;
 22
 23        inorder(root->left, k);
