@@ -1,4 +1,4 @@
-// Last updated: 2/19/2026, 4:33:50 PM
+// Last updated: 5/11/2026, 4:31:18 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -13,24 +13,46 @@
 12 */
 13
 14class Solution {
-15    unordered_map<int, int> mp;
-16    int preIndex = 0;
-17    TreeNode* build(vector<int>& preorder, int inStart, int inEnd) {
-18        if (inStart > inEnd)
-19            return nullptr;
-20        int rootval = preorder[preIndex++];
-21        TreeNode* root = new TreeNode(rootval);
-22        int mid = mp[rootval];
-23        root->left = build(preorder, inStart, mid - 1);
-24        root->right = build(preorder, mid + 1, inEnd);
-25        return root;
-26    }
-27
-28public:
-29    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-30        for (int i = 0; i < inorder.size(); i++)
-31            mp[inorder[i]] = i;
-32        return build(preorder, 0, inorder.size() - 1);
-33    }
-34};
-35
+15private:
+16    // The Detective's global tracker
+17    int preorderIndex = 0;
+18    // The Map's instant-lookup directory
+19    unordered_map<int, int> inorderMap;
+20
+21    TreeNode* build(vector<int>& preorder, int left, int right) {
+22        // 1. Safety Net / Boundary Check
+23        // If the left boundary crosses the right boundary, there are no nodes
+24        // left to build!
+25        if (left > right) {
+26            return nullptr;
+27        }
+28
+29        // 2. The Detective finds the Root
+30        int rootVal = preorder[preorderIndex++];
+31        TreeNode* root =
+32            new TreeNode(rootVal); // Physically allocate the memory!
+33
+34        // 3. The Map splits the neighborhoods
+35        int mid = inorderMap[rootVal];
+36
+37        // 4. The Leap of Faith (Build the children)
+38        // Left child gets everything strictly to the left of 'mid'
+39        root->left = build(preorder, left, mid - 1);
+40        // Right child gets everything strictly to the right of 'mid'
+41        root->right = build(preorder, mid + 1, right);
+42
+43        // Return the fully constructed branch
+44        return root;
+45    }
+46
+47public:
+48    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+49        // Step 1: Pre-process the Map for instant O(1) lookups
+50        for (int i = 0; i < inorder.size(); i++) {
+51            inorderMap[inorder[i]] = i;
+52        }
+53
+54        // Step 2: Kick off the recursion using the entire Map boundary
+55        return build(preorder, 0, inorder.size() - 1);
+56    }
+57};
