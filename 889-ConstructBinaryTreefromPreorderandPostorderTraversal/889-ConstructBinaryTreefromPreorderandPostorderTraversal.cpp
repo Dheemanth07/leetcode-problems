@@ -1,4 +1,4 @@
-// Last updated: 2/19/2026, 6:16:29 PM
+// Last updated: 5/11/2026, 4:44:58 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -20,20 +20,27 @@
 19                    int right) {
 20        if (left > right)
 21            return nullptr;
-22        TreeNode* node = new TreeNode(preorder[preIdx++]);
-23        if (left == right)
-24            return node;
-25        int leftRootVal = preorder[preIdx];
-26        int mid = mp[leftRootVal];
-27        node->left = build(preorder, postorder, left, mid);
-28        node->right = build(preorder, postorder, mid + 1, right-1);
-29        return node;
-30    }
-31
-32    TreeNode* constructFromPrePost(vector<int>& preorder,
-33                                   vector<int>& postorder) {
-34        for (int i = 0; i < postorder.size(); i++)
-35            mp[postorder[i]] = i;
-36        return build(preorder, postorder, 0, postorder.size() - 1);
-37    }
-38};
+22
+23        TreeNode* node = new TreeNode(preorder[preIdx++]);
+24
+25        if (left == right)
+26            return node;
+27
+28        int leftRootVal = preorder[preIdx];
+29
+30        int mid = mp[leftRootVal];
+31        node->left = build(preorder, postorder, left, mid);
+32        node->right = build(preorder, postorder, mid + 1, right - 1);
+33
+34        return node;
+35    }
+36
+37    TreeNode* constructFromPrePost(vector<int>& preorder,
+38                                   vector<int>& postorder) {
+39
+40        for (int i = 0; i < postorder.size(); i++)
+41            mp[postorder[i]] = i;
+42
+43        return build(preorder, postorder, 0, postorder.size() - 1);
+44    }
+45};
