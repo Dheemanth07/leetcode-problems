@@ -1,26 +1,18 @@
-// Last updated: 6/23/2026, 4:14:46 PM
+// Last updated: 6/23/2026, 4:26:57 PM
 1class Solution {
 2public:
 3    int subarraysDivByK(vector<int>& nums, int k) {
-4        int n = nums.size();
-5
-6        unordered_map<int, int> prefix_map;
-7        prefix_map[0] = 1;
+4        vector<int> remCount(k, 0);
+5        remCount[0] = 1;
+6
+7        int prefixSum = 0, count = 0, rem;
 8
-9        int count = 0;
-10        int prefix_sum = 0;
-11
-12        for (int i = 0; i < n; i++) {
-13            prefix_sum += nums[i];
+9        for (int num : nums) {
+10            prefixSum += num;
+11            rem = ((prefixSum % k) + k) % k;
+12            count += remCount[rem]++;
+13        }
 14
-15            int remainder = (prefix_sum % k + k) % k;
-16
-17            if (prefix_map.find(remainder) != prefix_map.end())
-18                count += prefix_map[remainder];
-19
-20            prefix_map[remainder]++;
-21        }
-22
-23        return count;
-24    }
-25};
+15        return count;
+16    }
+17};
