@@ -1,4 +1,4 @@
-// Last updated: 5/2/2026, 11:42:46 AM
+// Last updated: 6/23/2026, 4:54:47 PM
 1class Solution {
 2public:
 3    double findMaxAverage(vector<int>& nums, int k) {
