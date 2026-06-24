@@ -1,4 +1,4 @@
-// Last updated: 6/15/2026, 11:06:43 AM
+// Last updated: 6/24/2026, 10:55:48 AM
 1class Solution {
 2public:
 3    int findFirst(vector<int>& nums, int target) {
