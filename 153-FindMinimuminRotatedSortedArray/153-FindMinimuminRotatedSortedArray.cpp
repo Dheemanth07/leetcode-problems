@@ -1,4 +1,4 @@
-// Last updated: 5/2/2026, 6:21:42 PM
+// Last updated: 6/24/2026, 11:35:40 AM
 1class Solution {
 2public:
 3    int findMin(vector<int>& nums) {
@@ -10,6 +10,7 @@
 9            else
 10                r = mid;
 11        }
-12        return nums[l];
-13    }
-14};
+12        
+13        return nums[l];
+14    }
+15};
