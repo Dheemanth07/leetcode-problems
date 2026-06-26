@@ -1,4 +1,4 @@
-// Last updated: 5/3/2026, 3:05:27 PM
+// Last updated: 6/26/2026, 12:52:29 PM
 1struct TrieNode {
 2    TrieNode* children[26];
 3    bool isWordEnd;
@@ -21,35 +21,34 @@
 20        TrieNode* cur = root;
 21
 22        for (char c : word) {
-23            if (!cur->children[c - 'a']) {
-24                TrieNode* newNode = new TrieNode();
-25                cur->children[c - 'a'] = newNode;
-26            }
-27            cur = cur->children[c - 'a'];
-28        }
-29        cur->isWordEnd = true;
-30    }
-31
-32    bool search(string word) {
-33        TrieNode* cur = root;
-34
-35        for (char c : word) {
-36            if (!cur->children[c - 'a'])
-37                return false;
-38            cur = cur->children[c - 'a'];
-39        }
-40        return cur->isWordEnd;
-41    }
-42
-43    bool startsWith(string prefix) {
-44        TrieNode* cur = root;
-45
-46        for (char c : prefix) {
-47            if (!cur->children[c - 'a'])
-48                return false;
-49            cur = cur->children[c - 'a'];
-50        }
-51        return true;
-52    }
-53};
-54
+23            if (!cur->children[c - 'a']) 
+24                cur->children[c - 'a'] = new TrieNode();
+25
+26            cur = cur->children[c - 'a'];
+27        }
+28        cur->isWordEnd = true;
+29    }
+30
+31    bool search(string word) {
+32        TrieNode* cur = root;
+33
+34        for (char c : word) {
+35            if (!cur->children[c - 'a'])
+36                return false;
+37            cur = cur->children[c - 'a'];
+38        }
+39        return cur->isWordEnd;
+40    }
+41
+42    bool startsWith(string prefix) {
+43        TrieNode* cur = root;
+44
+45        for (char c : prefix) {
+46            if (!cur->children[c - 'a'])
+47                return false;
+48            cur = cur->children[c - 'a'];
+49        }
+50        return true;
+51    }
+52};
+53
