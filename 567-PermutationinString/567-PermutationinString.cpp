@@ -1,4 +1,4 @@
-// Last updated: 6/23/2026, 5:38:53 PM
+// Last updated: 6/26/2026, 10:35:56 AM
 1class Solution {
 2public:
 3    bool checkInclusion(string s1, string s2) {
