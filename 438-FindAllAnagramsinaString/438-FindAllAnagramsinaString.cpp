@@ -1,4 +1,4 @@
-// Last updated: 5/3/2026, 10:47:49 AM
+// Last updated: 6/26/2026, 10:34:24 AM
 1class Solution {
 2public:
 3    vector<int> findAnagrams(string s, string p) {
@@ -32,33 +32,31 @@
 31        // In C++, comparing two vectors of the same size checks their elements.
 32        // Because the size is always 26, this is mathematically an O(1)
 33        // operation!
-34        if (freq1 == freq2) {
+34        if (freq1 == freq2)
 35            res.push_back(0);
-36        }
-37
-38        // ==========================================
-39        // PHASE 3: The Glide (Sliding Window)
-40        // ==========================================
-41        int left = 0;
-42
-43        // The 'right' pointer starts exactly where our initial window left off.
-44        for (int right = n2; right < n1; right++) {
-45
-46            // 1. Add the incoming character on the right to our window
-47            freq1[s[right] - 'a']++;
-48
-49            // 2. Remove the outgoing character on the left from our window
-50            freq1[s[left] - 'a']--;
-51
-52            // 3. Move the left boundary of our window forward by 1
-53            left++;
-54
-55            // 4. Check if our newly shifted window is an exact match!
-56            if (freq1 == freq2) {
-57                res.push_back(left);
-58            }
-59        }
-60
-61        return res;
-62    }
-63};
+36
+37        // ==========================================
+38        // PHASE 3: The Glide (Sliding Window)
+39        // ==========================================
+40        int left = 0;
+41
+42        // The 'right' pointer starts exactly where our initial window left off.
+43        for (int right = n2; right < n1; right++) {
+44
+45            // 1. Add the incoming character on the right to our window
+46            freq1[s[right] - 'a']++;
+47
+48            // 2. Remove the outgoing character on the left from our window
+49            freq1[s[left] - 'a']--;
+50
+51            // 3. Move the left boundary of our window forward by 1
+52            left++;
+53
+54            // 4. Check if our newly shifted window is an exact match!
+55            if (freq1 == freq2)
+56                res.push_back(left);
+57        }
+58
+59        return res;
+60    }
+61};
