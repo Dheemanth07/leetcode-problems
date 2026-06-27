@@ -1,4 +1,4 @@
-// Last updated: 5/7/2026, 8:18:42 AM
+// Last updated: 6/27/2026, 11:04:27 AM
 1class Solution {
 2public:
 3    vector<int> asteroidCollision(vector<int>& asteroids) {
@@ -19,25 +19,20 @@
 18                    // asteroid keeps moving and might hit the next thing!
 19                    stack.pop_back();
 20                    continue;
-21                } else if (abs(incoming) == stack.back()) {
+21                } else if (abs(incoming) == stack.back())
 22                    // Mutual destruction. Top of stack explodes.
 23                    stack.pop_back();
-24                    destroyed = true; // Incoming also explodes!
-25                    break;
-26                } else {
-27                    // Top of stack is bigger. Incoming explodes immediately.
-28                    destroyed = true;
-29                    break;
-30                }
-31            }
-32
-33            // If the incoming asteroid survived all possible collisions,
-34            // it joins the survivors on the stack!
-35            if (!destroyed) {
-36                stack.push_back(incoming);
-37            }
-38        }
-39
-40        return stack;
-41    }
-42};
+24
+25                destroyed = true; // Incoming also explodes!
+26                break;
+27            }
+28
+29            // If the incoming asteroid survived all possible collisions,
+30            // it joins the survivors on the stack!
+31            if (!destroyed)
+32                stack.push_back(incoming);
+33        }
+34
+35        return stack;
+36    }
+37};
