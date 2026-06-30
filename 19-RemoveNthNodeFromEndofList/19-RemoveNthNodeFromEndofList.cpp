@@ -1,4 +1,4 @@
-// Last updated: 6/28/2026, 5:09:54 PM
+// Last updated: 6/30/2026, 10:25:42 PM
 1/**
 2 * Definition for singly-linked list.
 3 * struct ListNode {
@@ -14,15 +14,19 @@
 13    ListNode* removeNthFromEnd(ListNode* head, int n) {
 14        ListNode dummy(0);
 15        dummy.next = head;
-16        ListNode* slow = &dummy;
-17        ListNode* fast = &dummy;
-18        for (int i = 0; i <= n; i++)
-19            fast = fast->next;
-20        while (fast) {
-21            slow = slow->next;
-22            fast = fast->next;
-23        }
-24        slow->next = slow->next->next;
-25        return dummy.next;
-26    }
-27};
+16
+17        ListNode* slow = &dummy;
+18        ListNode* fast = &dummy;
+19
+20        for (int i = 0; i <= n; i++)
+21            fast = fast->next;
+22
+23        while (fast) {
+24            slow = slow->next;
+25            fast = fast->next;
+26        }
+27        
+28        slow->next = slow->next->next;
+29        return dummy.next;
+30    }
+31};
