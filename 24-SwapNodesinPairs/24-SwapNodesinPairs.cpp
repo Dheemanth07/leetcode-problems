@@ -1,29 +1,25 @@
-// Last updated: 7/1/2026, 12:58:53 PM
+// Last updated: 7/1/2026, 1:00:14 PM
 1class Solution {
 2public:
 3    ListNode* swapPairs(ListNode* head) {
-4        // Create a dummy node to act as our initial 'prev'
-5        ListNode dummy(0);
-6        dummy.next = head;
-7        ListNode* prev = &dummy;
+4        // Base case: If there are 0 or 1 nodes left, we can't swap.
+5        if (!head || !head->next) {
+6            return head;
+7        }
 8
-9        // We can only swap if there are at least two nodes left ahead of us
-10        while (prev->next && prev->next->next) {
-11
-12            // Identify the two nodes to swap
-13            ListNode* first = prev->next;
-14            ListNode* second = prev->next->next;
-15
-16            // The 3-Step Rewiring
-17            prev->next = second;        // Step 1
-18            first->next = second->next; // Step 2
-19            second->next = first;       // Step 3
+9        // 1. Identify the two nodes we are swapping
+10        ListNode* firstNode = head;
+11        ListNode* secondNode = head->next;
+12
+13        // 2. The recursive leap of faith!
+14        // The first node connects to the fully swapped remainder of the list.
+15        firstNode->next = swapPairs(secondNode->next);
+16
+17        // 3. The actual swap
+18        // The second node turns around and points to the first node.
+19        secondNode->next = firstNode;
 20
-21            // Move prev forward by 2 steps to prepare for the next pair
-22            prev = first;
-23        }
-24
-25        // Return the new head of the list
-26        return dummy.next;
-27    }
-28};
+21        // 4. Return the new head of this pair
+22        return secondNode;
+23    }
+24};
