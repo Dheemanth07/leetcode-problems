@@ -1,4 +1,4 @@
-// Last updated: 6/28/2026, 5:11:06 PM
+// Last updated: 7/1/2026, 11:25:19 AM
 1/**
 2 * Definition for singly-linked list.
 3 * struct ListNode {
@@ -30,11 +30,12 @@
 29            pq.pop();
 30            cur->next = node;
 31            cur = cur->next;
-32            if (node->next)
-33                pq.push(node->next);
-34        }
-35
-36        return dummy.next;
-37    }
-38};
-39
+32
+33            if (node->next)
+34                pq.push(node->next);
+35        }
+36
+37        return dummy.next;
+38    }
+39};
+40
