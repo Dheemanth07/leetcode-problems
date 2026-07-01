@@ -1,4 +1,4 @@
-// Last updated: 5/17/2026, 9:40:45 PM
+// Last updated: 7/1/2026, 9:26:19 AM
 1/**
 2 * Definition for singly-linked list.
 3 * struct ListNode {
@@ -16,15 +16,15 @@
 15        ListNode* curr = dummy;
 16        int carry = 0;
 17
-18        while (l1 != NULL || l2 != NULL || carry != 0) {
+18        while (l1 || l2 || carry) {
 19            int sum = carry;
 20
-21            if (l1 != NULL) {
+21            if (l1) {
 22                sum += l1->val;
 23                l1 = l1->next;
 24            }
 25
-26            if (l2 != NULL) {
+26            if (l2) {
 27                sum += l2->val;
 28                l2 = l2->next;
 29            }
