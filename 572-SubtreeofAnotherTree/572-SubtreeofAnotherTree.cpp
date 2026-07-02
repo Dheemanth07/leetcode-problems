@@ -1,4 +1,4 @@
-// Last updated: 1/15/2026, 12:19:18 PM
+// Last updated: 7/2/2026, 9:01:05 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -25,9 +25,7 @@
 24    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
 25        if (!root)
 26            return false;
-27        if (isSametree(root, subRoot))
-28            return true;
-29        return isSubtree(root->left, subRoot) ||
-30               isSubtree(root->right, subRoot);
-31    }
-32};
+27        return isSametree(root, subRoot) || isSubtree(root->left, subRoot) ||
+28               isSubtree(root->right, subRoot);
+29    }
+30};
