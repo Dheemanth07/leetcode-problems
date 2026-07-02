@@ -1,4 +1,4 @@
-// Last updated: 2/13/2026, 9:28:27 PM
+// Last updated: 7/2/2026, 7:29:26 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -11,19 +11,22 @@
 10 * right(right) {}
 11 * };
 12 */
-13class Solution {
-14public:
-15    int diameterOfBinaryTree(TreeNode* root) {
-16        int diameter = 0;
-17        height(root, diameter);
-18        return diameter;
-19    }
-20    int height(TreeNode* root, int& diameter) {
-21        if (!root)
-22            return 0;
-23        int left = height(root->left, diameter);
-24        int right = height(root->right, diameter);
-25        diameter = max(diameter, left + right);
-26        return 1 + max(left, right);
-27    }
-28};
+13
+14class Solution {
+15public:
+16    int diameter = 0;
+17    int maxHeight(TreeNode* root) {
+18        if (!root)
+19            return 0;
+20        int leftHeight = maxHeight(root->left);
+21        int rightHeight = maxHeight(root->right);
+22        diameter = max(diameter, leftHeight + rightHeight);
+23        return 1 + max(leftHeight, rightHeight);
+24    }
+25
+26    int diameterOfBinaryTree(TreeNode* root) {
+27        maxHeight(root);
+28        return diameter;
+29    }
+30};
+31
