@@ -1,4 +1,4 @@
-// Last updated: 7/3/2026, 1:51:26 PM
+// Last updated: 7/3/2026, 1:54:48 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -36,9 +36,10 @@
 35                    q.push(node->right);
 36            }
 37
-38            res.insert(res.begin(), level);
+38            res.push_back(level);
 39        }
 40
-41        return res;
-42    }
-43};
+41        reverse(res.begin(), res.end());
+42        return res;
+43    }
+44};
