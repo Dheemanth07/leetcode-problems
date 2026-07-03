@@ -1,4 +1,4 @@
-// Last updated: 7/3/2026, 10:33:25 AM
+// Last updated: 7/3/2026, 1:26:45 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -12,15 +12,31 @@
 11 * };
 12 */
 13class Solution {
-14    vector<int> res;
-15
-16public:
-17    vector<int> preorderTraversal(TreeNode* root) {
-18        if (!root)
-19            return {};
-20        res.push_back(root->val);
-21        preorderTraversal(root->left);
-22        preorderTraversal(root->right);
-23        return res;
-24    }
-25};
+14
+15public:
+16    vector<int> preorderTraversal(TreeNode* root) {
+17        vector<int> res;
+18        TreeNode* curr = root;
+19
+20        while (curr) {
+21            if (!curr->left) {
+22                res.push_back(curr->val);
+23                curr = curr->right;
+24            } else {
+25                TreeNode* pred = curr->left;
+26                while (pred->right && pred->right != curr)
+27                    pred = pred->right;
+28
+29                if (!pred->right) {
+30                    res.push_back(curr->val); // visit before creating thread
+31                    pred->right = curr;
+32                    curr = curr->left;
+33                } else {
+34                    pred->right = nullptr; // remove thread
+35                    curr = curr->right;
+36                }
+37            }
+38        }
+39        return res;
+40    }
+41};
