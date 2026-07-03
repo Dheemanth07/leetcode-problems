@@ -1,4 +1,4 @@
-// Last updated: 2/19/2026, 11:55:05 AM
+// Last updated: 7/3/2026, 1:45:28 PM
 1class Solution {
 2public:
 3    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
@@ -18,7 +18,7 @@
 17                q.pop();
 18
 19                // Determine the position to fill in the vector
-20                int index = leftToRight ? i : (levelSize - 1 - i);
+20                int index = leftToRight ? i : (levelSize - i - 1);
 21                currentLevel[index] = node->val;
 22
 23                if (node->left) q.push(node->left);
