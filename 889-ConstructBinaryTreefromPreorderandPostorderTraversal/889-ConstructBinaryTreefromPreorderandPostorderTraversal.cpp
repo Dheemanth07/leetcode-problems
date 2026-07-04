@@ -1,4 +1,4 @@
-// Last updated: 5/11/2026, 4:45:04 PM
+// Last updated: 7/4/2026, 10:23:16 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -13,7 +13,7 @@
 12 */
 13class Solution {
 14public:
-15    unordered_map<int, int> mp;
+15    unordered_map<int, int> postorderMap;
 16    int preIdx = 0;
 17
 18    TreeNode* build(vector<int>& preorder, vector<int>& postorder, int left,
@@ -28,7 +28,7 @@
 27
 28        int leftRootVal = preorder[preIdx];
 29
-30        int mid = mp[leftRootVal];
+30        int mid = postorderMap[leftRootVal];
 31        node->left = build(preorder, postorder, left, mid);
 32        node->right = build(preorder, postorder, mid + 1, right - 1);
 33
@@ -39,7 +39,7 @@
 38                                   vector<int>& postorder) {
 39
 40        for (int i = 0; i < postorder.size(); i++)
-41            mp[postorder[i]] = i;
+41            postorderMap[postorder[i]] = i;
 42
 43        return build(preorder, postorder, 0, postorder.size() - 1);
 44    }
