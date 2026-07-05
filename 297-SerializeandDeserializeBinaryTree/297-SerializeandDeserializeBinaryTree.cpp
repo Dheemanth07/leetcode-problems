@@ -1,4 +1,4 @@
-// Last updated: 5/11/2026, 5:18:29 PM
+// Last updated: 7/5/2026, 11:09:26 AM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -13,7 +13,7 @@
 12public:
 13    // --- SERIALIZE: Tree to String ---
 14    string serialize(TreeNode* root) {
-15        if (root == nullptr)
+15        if (!root)
 16            return "N,";
 17
 18        // Preorder: Root, Left, Right
@@ -35,21 +35,20 @@
 34        // Grab the next item off the conveyor belt, stopping at the comma
 35        getline(ss, token, ',');
 36
-37        if (token == "N") {
+37        if (token == "N") 
 38            return nullptr; // We hit a ghost! Branch ends here.
-39        }
-40
-41        // 1. Build the Root
-42        TreeNode* root = new TreeNode(stoi(token));
-43
-44        // 2. The Leap of Faith (Preorder forces Left, then Right)
-45        root->left = buildTree(ss);
-46        root->right = buildTree(ss);
-47
-48        return root;
-49    }
-50};
-51
-52// Your Codec object will be instantiated and called as such:
-53// Codec ser, deser;
-54// TreeNode* ans = deser.deserialize(ser.serialize(root));
+39
+40        // 1. Build the Root
+41        TreeNode* root = new TreeNode(stoi(token));
+42
+43        // 2. The Leap of Faith (Preorder forces Left, then Right)
+44        root->left = buildTree(ss);
+45        root->right = buildTree(ss);
+46
+47        return root;
+48    }
+49};
+50
+51// Your Codec object will be instantiated and called as such:
+52// Codec ser, deser;
+53// TreeNode* ans = deser.deserialize(ser.serialize(root));
