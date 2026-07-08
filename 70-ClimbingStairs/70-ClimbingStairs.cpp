@@ -1,4 +1,4 @@
-// Last updated: 5/13/2026, 10:24:28 AM
+// Last updated: 7/8/2026, 8:49:18 PM
 1class Solution {
 2public:
 3    int climbStairs(int n) {
