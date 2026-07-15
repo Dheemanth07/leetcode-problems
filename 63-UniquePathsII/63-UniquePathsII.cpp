@@ -1,4 +1,4 @@
-// Last updated: 6/29/2026, 7:41:31 PM
+// Last updated: 7/15/2026, 3:54:17 PM
 1class Solution {
 2public:
 3    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
@@ -29,7 +29,7 @@
 28                else if (c > 0)
 29                    // dp[c] currently holds the value from Above.
 30                    // We add dp[c-1], which holds the value from the Left.
-31                    dp[c] = dp[c] + dp[c - 1];
+31                    dp[c] += dp[c - 1];
 32                // (If c == 0, we are on the left wall, so there is no cell to
 33                // our Left to add. We just keep the value from Above!)
 34            }
