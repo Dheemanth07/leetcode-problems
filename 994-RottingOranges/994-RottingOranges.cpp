@@ -1,4 +1,4 @@
-// Last updated: 2/25/2026, 6:28:15 PM
+// Last updated: 7/18/2026, 11:53:06 AM
 1class Solution {
 2public:
 3    int orangesRotting(vector<vector<int>>& grid) {
@@ -32,19 +32,20 @@
 31                    int nx = x + dir[d];
 32                    int ny = y + dir[d + 1];
 33
-34                    if (nx >= 0 && ny >= 0 && nx < rows && ny < cols && grid[nx][ny] == 1) {
-35                        grid[nx][ny] = 2;
-36                        q.push({nx,ny});
-37                        fresh--;
-38                        rotted = true;
-39                    }
-40                }
-41            }
-42
-43            if (rotted)
-44                minutes++;
-45        }
-46
-47        return fresh == 0 ? minutes : -1;
-48    }
-49};
+34                    if (nx >= 0 && ny >= 0 && nx < rows && ny < cols &&
+35                        grid[nx][ny] == 1) {
+36                        grid[nx][ny] = 2;
+37                        q.push({nx, ny});
+38                        fresh--;
+39                        rotted = true;
+40                    }
+41                }
+42            }
+43
+44            if (rotted)
+45                minutes++;
+46        }
+47
+48        return fresh == 0 ? minutes : -1;
+49    }
+50};
