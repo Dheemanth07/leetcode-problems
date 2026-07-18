@@ -1,34 +1,36 @@
-// Last updated: 2/22/2026, 10:16:08 AM
+// Last updated: 7/18/2026, 11:53:37 AM
 1class Solution {
 2public:
-3    void dfs(vector<vector<char>>& grid, int i, int j) {
-4        if (i < 0 || j < 0 || i >= grid.size() ||
-5            j >= grid[0].size())    // return if index goes out of bounds
-6            return;
-7
-8        if (grid[i][j] == '0')      // If already visited return
-9            return;
-10
-11        grid[i][j] = '0';       // Mark it as visited
-12
-13        // DFS all its neighbours
-14        dfs(grid, i + 1, j);    // DFS down
-15        dfs(grid, i - 1, j);    // DFS up
-16        dfs(grid, i, j - 1);    // DFS left
-17        dfs(grid, i, j + 1);    // DFS right
-18    }
-19
-20    int numIslands(vector<vector<char>>& grid) {
-21        int count = 0;
-22        for (int i = 0; i < grid.size(); i++) {
-23            for (int j = 0; j < grid[i].size(); j++) {
-24                if (grid[i][j] == '1') {
-25                    dfs(grid, i, j);
-26                    count++; // Increment count for every island found
-27                }
-28            }
-29        }
-30        return count;
-31    }
-32};
-33
+3    int numIslands(vector<vector<char>>& grid) {
+4        int rows = grid.size();
+5        int cols = grid[0].size();
+6
+7        int count = 0;
+8
+9        for (int i = 0; i < rows; i++) {
+10            for (int j = 0; j < cols; j++) {
+11                if (grid[i][j] == '1') {
+12                    dfs(i, j, grid);
+13                    count++;
+14                }
+15            }
+16        }
+17
+18        return count;
+19    }
+20
+21    void dfs(int i, int j, vector<vector<char>>& grid) {
+22        if (i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size())
+23            return;
+24
+25        if (grid[i][j] == '0')
+26            return;
+27
+28        grid[i][j] = '0';
+29
+30        dfs(i + 1, j, grid);
+31        dfs(i, j + 1, grid);
+32        dfs(i - 1, j, grid);
+33        dfs(i, j - 1, grid);
+34    }
+35};
