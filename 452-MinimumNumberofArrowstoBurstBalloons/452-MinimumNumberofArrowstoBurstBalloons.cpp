@@ -1,4 +1,4 @@
-// Last updated: 7/6/2026, 2:01:11 PM
+// Last updated: 7/21/2026, 10:33:03 PM
 1class Solution {
 2public:
 3    int findMinArrowShots(vector<vector<int>>& points) {
