@@ -1,4 +1,4 @@
-// Last updated: 7/5/2026, 11:14:13 AM
+// Last updated: 7/21/2026, 10:19:41 PM
 1class Solution {
 2public:
 3    vector<vector<int>> merge(vector<vector<int>>& intervals) {
@@ -11,7 +11,7 @@
 10        merged.push_back(intervals[0]);
 11
 12        for (const auto& interval : intervals) {
-13            if (merged.empty() || merged.back()[1] < interval[0])
+13            if (merged.empty() || interval[0] > merged.back()[1])
 14                merged.push_back(interval); // No overlap, add new interval
 15            else
 16                merged.back()[1] =
