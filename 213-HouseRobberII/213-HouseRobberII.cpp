@@ -1,4 +1,4 @@
-// Last updated: 7/8/2026, 10:31:00 PM
+// Last updated: 7/22/2026, 8:57:19 PM
 1class Solution {
 2public:
 3    int rob(vector<int>& nums) {
