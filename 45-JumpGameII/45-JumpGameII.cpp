@@ -1,4 +1,4 @@
-// Last updated: 7/6/2026, 6:47:07 PM
+// Last updated: 7/22/2026, 2:09:08 PM
 1class Solution {
 2public:
 3    int jump(vector<int>& nums) {
@@ -25,12 +25,11 @@
 24
 25                // Early exit: If our new boundary already reaches the end, we
 26                // can stop early!
-27                if (current_end >= nums.size() - 1) {
+27                if (current_end >= nums.size() - 1)
 28                    break;
-29                }
-30            }
-31        }
-32
-33        return jumps;
-34    }
-35};
+29            }
+30        }
+31
+32        return jumps;
+33    }
+34};
