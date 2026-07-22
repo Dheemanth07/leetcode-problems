@@ -1,4 +1,4 @@
-// Last updated: 7/20/2026, 7:07:37 PM
+// Last updated: 7/22/2026, 2:04:26 PM
 1class Solution {
 2public:
 3    bool canJump(vector<int>& nums) {
