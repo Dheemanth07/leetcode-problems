@@ -1,4 +1,4 @@
-// Last updated: 7/12/2026, 7:07:42 PM
+// Last updated: 7/23/2026, 10:00:13 PM
 1class Solution {
 2public:
 3    int findTargetSumWays(vector<int>& nums, int target) {
@@ -7,7 +7,7 @@
 6            total_sum += num;
 7
 8        // Mathematical Impossibility Checks
-9        if (abs(target) > total_sum || (total_sum + target) % 2 != 0) 
+9        if (abs(target) > total_sum || (total_sum + target) % 2) 
 10            return 0;
 11
 12        // Calculate our positive subset target (S1)
