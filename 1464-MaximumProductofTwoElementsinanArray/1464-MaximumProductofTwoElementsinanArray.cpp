@@ -1,4 +1,4 @@
-// Last updated: 7/29/2026, 5:56:51 PM
+// Last updated: 7/29/2026, 5:59:13 PM
 1class Solution {
 2public:
 3    int maxProduct(vector<int>& nums) {
@@ -8,17 +8,12 @@
 7
 8        for (int i = 0; i < n; i++) {
 9            if (nums[i] > max_ele) {
-10                max_ele = nums[i];
-11                idx = i;
-12            }
-13        }
-14
-15        for (int i = 0; i < n; i++) {
-16            if (nums[i] == max_ele && i == idx)
-17                continue;
-18            second_max_ele = max(second_max_ele, nums[i]);
-19        }
-20
-21        return (max_ele - 1) * (second_max_ele - 1);
-22    }
-23};
+10                second_max_ele = max_ele;
+11                max_ele = nums[i];
+12            } else
+13                second_max_ele = max(second_max_ele, nums[i]);
+14        }
+15
+16        return (max_ele - 1) * (second_max_ele - 1);
+17    }
+18};
